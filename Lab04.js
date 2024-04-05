@@ -1,24 +1,21 @@
 const express = require('express');
+const path = require('path');
 const app = express();
 
-// Ruta principal
+const PORT = process.env.PORT || 3000;
+
 app.get('/', (req, res) => {
-  res.send('¡Bienvenido a mi aplicación Express en Docker!');
+  res.sendFile(path.join(__dirname, '/views/index.html'));
 });
 
-// Ruta para mostrar clientes
 app.get('/clientes', (req, res) => {
-  const clientes = ['Cliente 1', 'Cliente 2', 'Cliente 3'];
-  res.json(clientes);
+  res.sendFile(path.join(__dirname, '/views/clientes.html'));
 });
 
-// Ruta para mostrar productos
 app.get('/productos', (req, res) => {
-  const productos = ['Producto 1', 'Producto 2', 'Producto 3'];
-  res.json(productos);
+  res.sendFile(path.join(__dirname, '/views/productos.html'));
 });
 
-const PORT = 5000;
 app.listen(PORT, () => {
-  console.log(`Servidor Express ejecutándose en el puerto ${PORT}`);
+  console.log(`Servidor Express en funcionamiento en el puerto ${PORT}`);
 });
